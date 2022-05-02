@@ -5,7 +5,8 @@ const Main = styled.main`
   display: flex;
   align-items: center;
   flex-direction: column;
-  margin-top: 100px;
+  margin-top: 10px;
+  margin-bottom: 10px;
 `
 
 const MainWrapper = styled.div`

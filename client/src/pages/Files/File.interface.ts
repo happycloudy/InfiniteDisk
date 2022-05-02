@@ -1,7 +1,9 @@
 export default interface FileInterface {
-    id: number,
+    name: string,
     size: number | string,
-    path_display: string,
-    path_lower: string,
+    email: string,
+    timestamp: number,
+    nodeId: number,
+    label: string,
     connectionNumber?: number,
 }

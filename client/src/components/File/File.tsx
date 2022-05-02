@@ -33,6 +33,8 @@ const Footer = styled.div`
   font-weight: 400;
   font-size: 16px;
   line-height: 22px;
+  height: 25%;
+  overflow: hidden;
 `
 
 const Size = styled.div`
@@ -42,20 +44,21 @@ const Size = styled.div`
 `
 
 
-const File = ({size = '', name = '', img = '', connectionNumber, path}: FileInterface) => {
+const File = ({size = '', name = '', img = '', originName, connectionNumber, nodeId}: FileInterface) => {
 
-    const handleClick = () => {
-        axios.post('http://localhost:30/files/download',
-            { path: path, connectionNumber: connectionNumber },
-        ).then(res => {
-            const downloadUrl = window.URL.createObjectURL(res.data)
+    const handleClick = async () => {
+        let res = await fetch(`http://localhost:30/files/download/${nodeId}/${connectionNumber}`)
+
+        if (res.status === 200) {
+            const blob = await res.blob()
+            const downloadUrl = window.URL.createObjectURL(blob)
             const link = document.createElement('a')
             link.href = downloadUrl
-            link.download = res.data.result.name
+            link.download = originName
             document.body.appendChild(link)
             link.click()
             link.remove()
-        })
+        }
     }
 
     return (

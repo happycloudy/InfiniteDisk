@@ -1,14 +1,12 @@
 import React from 'react';
 import AppContainer from "./components/AppContainer/AppContainer";
-import Header from "./components/Header/Header";
 import Files from "./pages/Files/Files";
+import Info from "./components/Info/Info";
 
 function App() {
     return (
         <AppContainer>
-            <Header>
-                Сохраненные файлы
-            </Header>
+            <Info/>
             <Files/>
         </AppContainer>
     );

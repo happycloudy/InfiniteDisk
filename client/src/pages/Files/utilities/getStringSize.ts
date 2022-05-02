@@ -5,9 +5,9 @@ enum sizes {
 
 const getStringSize = (size: number) => {
     if (size > sizes.MB) {
-        return `${(size / sizes.MB).toFixed(0)} Кб`
+        return `${(size / sizes.MB).toFixed(1)} Кб`
     } else if (size >= sizes.KB) {
-        return `${(size / sizes.KB).toFixed(0)} Кб`
+        return `${(size / sizes.KB).toFixed(1)} Кб`
     }
     return `${size} Б`
 }

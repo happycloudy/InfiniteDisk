@@ -10,6 +10,7 @@ const Wrap = styled.div`
   flex-wrap: wrap;
   justify-content: flex-start;
   gap: 22px;
+  margin-top: 100px;
 `
 
 const List = () => {
@@ -18,18 +19,22 @@ const List = () => {
     useEffect(() => {
         axios.get('http://localhost:30/files').then(res => {
             let parsedFiles = res.data.map((file: FileInterface) => {
-                file.size = getStringSize(typeof file.size === 'string' ? parseInt(file.size): file.size)
+                file.size = getStringSize(typeof file.size === 'string' ? parseInt(file.size) : file.size)
                 return file
             })
             setFiles(parsedFiles)
-            // console.log(parsedFiles)
         })
     }, [])
 
     return (
         <Wrap>
             {
-                files.map(file => <File key={file.id} name={file.path_display} path={file.path_lower} connectionNumber={file.connectionNumber} size={file.size.toString()}/>)
+                files.map(file => <File key={file.nodeId}
+                                        name={file.name}
+                                        nodeId={file.nodeId}
+                                        connectionNumber={file.connectionNumber} size={file.size.toString()}
+                                        originName={file.name}/>
+                )
             }
         </Wrap>
     );

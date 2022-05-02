@@ -1,5 +1,5 @@
 interface GetFileDto {
-    path: string,
+    nodeId: string,
     connectionNumber: number,
 }
 
