@@ -24,6 +24,7 @@
     "@nestjs/common": "^8.0.0",
     "@nestjs/core": "^8.0.0",
     "@nestjs/platform-express": "^8.0.0",
+    "@types/puppeteer": "^5.4.6",
     "csv": "^6.0.5",
     "dropbox": "^10.28.0",
     "megajs": "^1.0.4",

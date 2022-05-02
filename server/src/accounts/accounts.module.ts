@@ -7,5 +7,6 @@ import {PuppeteerModule} from "../puppeteer/puppeteer.module";
     imports: [PuppeteerModule],
     controllers: [AccountsController],
     providers: [AccountsService],
+    exports: [AccountsService]
 })
 export class AccountsModule{}

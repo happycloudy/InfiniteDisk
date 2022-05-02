@@ -3,6 +3,6 @@ import {PuppeteerService} from "./puppeteer.service";
 
 @Module({
     providers: [PuppeteerService],
-    exports: [PuppeteerService]
+    exports: [PuppeteerService],
 })
 export class PuppeteerModule {}
