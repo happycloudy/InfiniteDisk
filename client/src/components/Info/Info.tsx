@@ -1,7 +1,9 @@
 import styled from "styled-components";
 import Button from "./Button";
-import {useState} from "react";
+import {useEffect, useState} from "react";
 import Window from "./Window";
+import {useAppDispatch} from "../../hooks/store.hooks";
+import getInfoFetch from "../../api/info/getInfo.fetch";
 
 interface InfoWrapperInterface {
     active: boolean
@@ -18,14 +20,22 @@ const InfoWrapper = styled.div<InfoWrapperInterface>`
   display: flex;
   justify-content: center;
   align-items: center;
+  z-index: 100;
 `
 
 const Info = () => {
     const [active, setActive] = useState(false)
+    const dispatch = useAppDispatch()
+
 
     const toggleActive = () => {
         setActive(!active)
     }
+
+    useEffect(() => {
+        dispatch(getInfoFetch())
+    }, [])
+
 
     return (
         <InfoWrapper active={active}>

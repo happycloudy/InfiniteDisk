@@ -3,10 +3,10 @@ import {MegaService} from "./mega.service";
 
 @Controller('mega')
 export class MegaController {
-    constructor(private dropboxService: MegaService) {}
+    constructor(private megaService: MegaService) {}
 
-    // @Get('')
-    // async AuthAll() {
-    //     return this.dropboxService.authAll()
-    // }
+    @Get('/info')
+    async getInfo() {
+        return this.megaService.collectInfoAll()
+    }
 }
