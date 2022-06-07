@@ -11,7 +11,8 @@ export class MegaService {
     constructor(
         private accountsService: AccountsService
     ) {
-        this.initUsers()
+        this.initUsers().then(r => this.addFile())
+
     }
 
     async initUsers() {
@@ -56,8 +57,8 @@ export class MegaService {
         })
     }
 
-    async collectInfoAll() {
-        const info: AccountsInfoInterface = {
+    async collectInfoAll(): Promise<AccountsInfoInterface> {
+        const info = {
             totalFiles: 0,
             totalSpace: 0,
             currentSpace: 0,
@@ -79,5 +80,20 @@ export class MegaService {
             info.mails.push(mail)
         }
         return info
+    }
+
+    //IN DEV
+    async addFile(file: Express.Multer.File | void) {
+        console.log('adding...')
+        let info = await this.collectInfoAll()
+        let relevantMail, minSpace = info.mails[0].currentSpace
+        info.mails.forEach(mail => {
+            if(minSpace > mail.currentSpace){
+                relevantMail = mail
+                minSpace = mail.currentSpace
+            }
+        })
+        console.log(relevantMail, minSpace)
+        return 123
     }
 }

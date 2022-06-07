@@ -4,14 +4,18 @@ import GetFileDto from './dto/getFile.dto';
 
 @Injectable()
 export class FilesService {
-    constructor(private dropboxService: MegaService) {
+    constructor(private megaService: MegaService) {
     }
 
     async getAll() {
-        return this.dropboxService.getAllFiles()
+        return this.megaService.getAllFiles()
     }
 
     async getFile(file: GetFileDto){
-        return this.dropboxService.getFile(file.connectionNumber, file.nodeId)
+        return this.megaService.getFile(file.connectionNumber, file.nodeId)
+    }
+
+    async addFile(file: Express.Multer.File) {
+        return this.megaService.addFile(file)
     }
 }
